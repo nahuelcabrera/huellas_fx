@@ -6,26 +6,24 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
-import android.widget.TextView;
 
-import com.nahuelcabrera.huellas.MainActivity;
 import com.nahuelcabrera.huellas.R;
 import com.nahuelcabrera.huellas.ui.fragment.PetLocationFragment;
 import com.nahuelcabrera.huellas.ui.fragment.PetReviewFragment;
 
 public class ReviewActivity extends AppCompatActivity {
 
-
-    public static final String PET_ID = "REVIEW_ACTIVITY_PET_ID";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_review);
 
-        //GET THE ID PET
+        getSupportActionBar().setElevation(0.0F);
+        getSupportActionBar().setTitle(R.string.title_review_screen);
+
+        //GET PET ID
         Intent receiver = getIntent();
-        String petID = receiver.getStringExtra(MainActivity.PET_ID);
+        String petID = receiver.getStringExtra(MainActivity.PET_ID_KEY);
 
         //MANAGE FRAGMENTS
         FragmentManager fm = getSupportFragmentManager();
@@ -34,18 +32,22 @@ public class ReviewActivity extends AppCompatActivity {
         PetReviewFragment petReviewFragment = new PetReviewFragment();
         PetLocationFragment petLocationFragment = new PetLocationFragment();
 
-        //Create bundle to store data
+        //Create a bundle to save the id
         Bundle idBundle = new Bundle();
-        idBundle.putString(PET_ID, petID);
+        idBundle.putString(MainActivity.PET_ID_KEY, petID);
 
         //Send data
         petReviewFragment.setArguments(idBundle);
         petLocationFragment.setArguments(idBundle);
 
 
-        transaction.add(R.id.fl_review, petReviewFragment);
         transaction.add(R.id.fl_map, petLocationFragment);
+        transaction.add(R.id.fl_review, petReviewFragment);
+
         transaction.commit();
         fm.beginTransaction();
+
+
     }
+
 }

@@ -1,7 +1,23 @@
 <resources>
-    <string name="app_name">Huellas</string>
-    <string name="dummy_pet_result_title">Dogo</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_name">Huellas</string>
+    <string name="title_review_screen">Detalles</string>
+    <string name="hello_blank_fragment">Hi frame!</string>
+
+    <!--For pet empty data-->
+    <string name="tv_data_name">Sin nombre</string>
+    <string name="tv_data_category">Sin categoría</string>
+    <string name="tv_data_tags">Sin etiquetas</string>
+    <string name="tv_data_code">000000</string>
+    <string name="tv_data_status">Desconocido</string>
+
+    <!--APP-->
+    <string name="tv_barcode">Código de identificación</string>
+    <string name="tv_category">Categoría</string>
+    <string name="tv_tags">Etiquetas</string>
+    <string name="tv_status">Disponibilidad</string>
+    <string name="tv_location">¿Dónde se encuentra tu mascota?</string>
+    <string name="btn_adopt">Adoptar</string>
+    <string name="iv_profile">Foto de la mascota</string>
+
 </resources>

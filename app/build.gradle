@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 28
+
     defaultConfig {
         applicationId "com.nahuelcabrera.huellas"
         minSdkVersion 21
@@ -10,16 +11,19 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
+
 }
 
 dependencies {
@@ -55,4 +59,19 @@ dependencies {
 
     //GoogleMaps
     implementation 'com.google.android.gms:play-services-maps:16.1.0'
+
+    //Location
+    implementation 'com.google.android.gms:play-services-location:16.0.0'
+
+    //Glide image loader
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+
+    //Google play services
+    implementation("com.google.android.gms:play-services-gcm:12.0.1") {
+        exclude group: "com.google.android.gms"
+    }
+    implementation 'com.google.android.material:material:1.0.0'
 }
+
+

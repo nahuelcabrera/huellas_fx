@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
@@ -10,8 +11,8 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_item_pet_result"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        card_view:cardCornerRadius="2dp"
+        android:layout_height="120dp"
+        card_view:cardCornerRadius="12dp"
         android:elevation="0dp"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="2dp"
@@ -19,26 +20,74 @@
         android:layout_marginLeft="2dp"
         android:layout_gravity="center">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tv_item_pet_result_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
+            <ImageView
+                android:layout_gravity="center"
+                android:id="@+id/iv_item_pet_profile_picture"
+                android:layout_width="90dp"
+                android:layout_margin="10dp"
+                android:layout_height="90dp"
+                android:contentDescription="@string/iv_profile"
+                tools:srcCompat="@tools:sample/avatars[2]" />
 
-                android:layout_marginEnd="8dp"
-                android:text="@string/dummy_pet_result_title"
-                android:textSize="18sp"
-                card_view:layout_constraintEnd_toEndOf="parent"
-                card_view:layout_constraintStart_toStartOf="parent"
-                card_view:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/tv_item_pet_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="24dp"
+                    android:text="@string/tv_data_name"
+                    android:textAlignment="textEnd"
+                    android:textSize="18sp"
+                    card_view:layout_constraintEnd_toEndOf="parent"
+                    card_view:layout_constraintTop_toTopOf="parent" />
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/tv_item_pet_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/tv_data_code"
+                    android:textColor="@color/colorPrimaryDark"
+                    card_view:layout_constraintStart_toEndOf="@+id/iv_ic_huella"
+                    card_view:layout_constraintTop_toBottomOf="@+id/tv_code_head" />
+
+                <ImageView
+                    android:id="@+id/iv_ic_huella"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/ic_fingerprint"
+                    android:tint="@color/colorPrimary"
+                    card_view:layout_constraintStart_toStartOf="parent"
+                    card_view:layout_constraintTop_toBottomOf="@+id/tv_code_head" />
+
+                <TextView
+                    android:id="@+id/tv_code_head"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/tv_barcode"
+                    card_view:layout_constraintBottom_toBottomOf="parent"
+                    card_view:layout_constraintStart_toStartOf="parent"
+                    card_view:layout_constraintTop_toBottomOf="@+id/tv_item_pet_name"
+                    card_view:layout_constraintVertical_bias="0.056" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
 
 
     </androidx.cardview.widget.CardView>

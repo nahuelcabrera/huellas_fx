@@ -1,16 +1,19 @@
 package com.nahuelcabrera.huellas.ui.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.nahuelcabrera.huellas.R;
 import com.nahuelcabrera.huellas.model.pojo.Pet;
 import java.util.List;
@@ -26,10 +29,12 @@ public class PetResultAdapter extends RecyclerView.Adapter<PetResultViewHolder> 
 
     private List<Pet> results;
     private OnPetListener onPetListener;
+    private Context context;
 
-    public PetResultAdapter(List<Pet> results, OnPetListener onPetListener) {
+    public PetResultAdapter(List<Pet> results, OnPetListener onPetListener, Context context) {
         this.results = results;
         this.onPetListener = onPetListener;
+        this.context = context;
     }
 
     @NonNull
@@ -46,6 +51,14 @@ public class PetResultAdapter extends RecyclerView.Adapter<PetResultViewHolder> 
     public void onBindViewHolder(@NonNull PetResultViewHolder holder, int position) {
         holder.updateWithPetResult(this.results.get(position));
 
+        holder.cvContainer.setCardElevation(0.0F);
+
+        Glide.with(context)
+                .load("https://placedog.net/640/480?random")
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .circleCrop()
+                .into(holder.ivPicture);
+
     }
 
 
@@ -58,8 +71,19 @@ public class PetResultAdapter extends RecyclerView.Adapter<PetResultViewHolder> 
 
 class PetResultViewHolder extends ViewHolder implements View.OnClickListener {
 
-    @BindView(R.id.tv_item_pet_result_title)
-    TextView tvTitle;
+    //Bind views for data showing
+
+    @BindView(R.id.cv_item_pet_result)
+    CardView cvContainer;
+
+    @BindView(R.id.tv_item_pet_name)
+    TextView tvName;
+
+    @BindView(R.id.tv_item_pet_code)
+    TextView tvCode;
+
+    @BindView(R.id.iv_item_pet_profile_picture)
+    ImageView ivPicture;
 
     //
     PetResultAdapter.OnPetListener onPetListener;
@@ -75,7 +99,9 @@ class PetResultViewHolder extends ViewHolder implements View.OnClickListener {
     }
 
     public void updateWithPetResult(Pet pet){
-        this.tvTitle.setText(pet.getName());
+        this.tvName.setText(pet.getName());
+        this.tvCode.setText(pet.getId());
+
     }
 
 
